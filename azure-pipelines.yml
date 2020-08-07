@@ -1,0 +1,24 @@
+# Starter pipeline
+# Start with a minimal pipeline that you can customize to build and deploy your code.
+# Add steps that build, run tests, deploy, and more:
+# https://aka.ms/yaml
+
+trigger:
+- master
+
+pool:
+  vmImage: 'ubuntu-latest'
+
+steps:
+- task: AzureResourceManagerTemplateDeployment@3
+  inputs:
+    deploymentScope: 'Resource Group'
+    azureResourceManagerConnection: 'Azserviceaccoection'
+    subscriptionId: '4acf6ea3-9780-4098-b282-cf80d131c33e'
+    action: 'Create Or Update Resource Group'
+    resourceGroupName: 'Azure-DevOps'
+    location: 'West Europe'
+    templateLocation: 'Linked artifact'
+    csmFile: '101-storage-account-create/azuredeploy.json'
+    overrideParameters: '-projectName Myfrstproject -linkedTemplateUri https://github.com/aarjun88/azure-quickstart-templates/blob/master/101-storage-account-create/azuredeploy.json'
+    deploymentMode: 'Incremental'
