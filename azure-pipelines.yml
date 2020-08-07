@@ -10,15 +10,9 @@ pool:
   vmImage: 'ubuntu-latest'
 
 steps:
-- task: AzureResourceManagerTemplateDeployment@3
+- task: AzureCLI@2
   inputs:
-    deploymentScope: 'Resource Group'
-    azureResourceManagerConnection: 'Azserviceaccoection'
-    subscriptionId: '4acf6ea3-9780-4098-b282-cf80d131c33e'
-    action: 'Create Or Update Resource Group'
-    resourceGroupName: 'Azure-DevOps'
-    location: 'West Europe'
-    templateLocation: 'Linked artifact'
-    csmFile: '101-storage-account-create/azuredeploy.json'
-    overrideParameters: '-projectName Myfrstproject -linkedTemplateUri https://github.com/aarjun88/azure-quickstart-templates/blob/master/101-storage-account-create/azuredeploy.json'
-    deploymentMode: 'Incremental'
+    azureSubscription: 'Azserviceaccoection'
+    scriptType: 'ps'
+    scriptLocation: 'inlineScript'
+    inlineScript: 'az acr create --resource-group AKSlearning --name acraks009 --sku Basic'
