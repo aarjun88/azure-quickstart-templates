@@ -13,6 +13,6 @@ steps:
 - task: AzureCLI@2
   inputs:
     azureSubscription: 'Azserviceaccoection'
-    scriptType: 'ps'
+    scriptType: 'shell'
     scriptLocation: 'inlineScript'
     inlineScript: 'az acr create --resource-group AKSlearning --name acraks009 --sku Basic'
